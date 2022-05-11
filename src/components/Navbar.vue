@@ -1,8 +1,8 @@
 <template>
   <div class="navbar">
     <nav>
-      <img src="@/assets/ninja.png" />
-      <h1><router-link :to="{ name: 'Home' }">Muso Ninja</router-link></h1>
+      <img src="@/assets/Logo.gif" />
+      <h1><router-link :to="{ name: 'Home' }">Music Mania</router-link></h1>
       <div class="links">
         <div v-if="user">
           <router-link :to="{ name: 'CreatePlaylist' }"
@@ -22,26 +22,25 @@
 </template>
 
 <script>
-import useLogout from '../composables/useLogout'
-import getUser from '../composables/getUser'
-import {useRouter} from 'vue-router'
+import useLogout from "../composables/useLogout";
+import getUser from "../composables/getUser";
+import { useRouter } from "vue-router";
 export default {
-  setup(){
-    const {logout, error} = useLogout()
-    const { user } = getUser()
-    const router = useRouter()
+  setup() {
+    const { logout, error } = useLogout();
+    const { user } = getUser();
+    const router = useRouter();
 
-      const handleClick = async () => {
-        await logout()
-        if(!error.value){
-        console.log('User logout')
-        router.push({ name: 'Login'})
-        }
+    const handleClick = async () => {
+      await logout();
+      if (!error.value) {
+        console.log("User logout");
+        router.push({ name: "Login" });
       }
-      return {handleClick, user}
-  }
-}
-
+    };
+    return { handleClick, user };
+  },
+};
 </script>
 
 <style scoped>
@@ -65,7 +64,7 @@ nav .links {
 nav .links a,
 button {
   margin-left: 16px;
-  font-size: 14px;
+  font-size: 16px;
 }
 nav img {
   max-width: 60px;

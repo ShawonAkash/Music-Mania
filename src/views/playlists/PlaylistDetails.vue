@@ -29,41 +29,42 @@
 </template>
 
 <script>
-import AddSong from '@/components/AddSong.vue'
-import useStorage from '@/composables/useStorage'
-import useDocument from '@/composables/useDocument'
-import getDocument from '@/composables/getDocument'
-import getUser from '@/composables/getUser'
-import { computed } from '@vue/reactivity'
-import { useRouter } from 'vue-router'
+import AddSong from "@/components/AddSong.vue";
+import useStorage from "@/composables/useStorage";
+import useDocument from "@/composables/useDocument";
+import getDocument from "@/composables/getDocument";
+import getUser from "@/composables/getUser";
+import { computed } from "@vue/reactivity";
+import { useRouter } from "vue-router";
 
 export default {
-  props: ['id'],
+  props: ["id"],
   components: { AddSong },
-  setup(props){
-    const { error, document: playlist} = getDocument('playlists', props.id)
-    const { user } = getUser()
-    const { deleteDoc, updateDoc } = useDocument('playlists', props.id)
-    const { deleteImage } = useStorage()
-    const router = useRouter()
+  setup(props) {
+    const { error, document: playlist } = getDocument("playlists", props.id);
+    const { user } = getUser();
+    const { deleteDoc, updateDoc } = useDocument("playlists", props.id);
+    const { deleteImage } = useStorage();
+    const router = useRouter();
 
     const ownership = computed(() => {
-      return playlist.value && user.value && user.value.uid == playlist.value.userId
-    })
+      return (
+        playlist.value && user.value && user.value.uid == playlist.value.userId
+      );
+    });
     const handleDelete = async () => {
-      await deleteImage(playlist.value.filePath)
-      await deleteDoc()
-      router.push({name: 'Home'})
-    }
+      await deleteImage(playlist.value.filePath);
+      await deleteDoc();
+      router.push({ name: "Home" });
+    };
     const handleClick = async (id) => {
-      const songs = playlist.value.songs.filter((song)=>song.id!=id)
-      await updateDoc({ songs })
-    }
+      const songs = playlist.value.songs.filter((song) => song.id != id);
+      await updateDoc({ songs });
+    };
 
-
-    return { error, playlist, ownership, handleDelete, handleClick }
-  }
-}
+    return { error, playlist, ownership, handleDelete, handleClick };
+  },
+};
 </script>
 
 <style>
@@ -83,6 +84,7 @@ export default {
   position: absolute;
   top: 0;
   left: 0;
+  width: 50%;
   min-width: 100%;
   min-height: 100%;
   max-width: 200%;
@@ -102,9 +104,9 @@ export default {
 .username {
   color: #999;
 }
-.description {
+/* .description {
   text-align: left;
-}
+} */
 .single-song {
   padding: 10px 0;
   display: flex;

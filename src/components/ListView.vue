@@ -19,8 +19,8 @@
 
 <script>
 export default {
-  props: ['playlists'],
-}
+  props: ["playlists"],
+};
 </script>
 
 <style scoped>
@@ -29,7 +29,7 @@ export default {
   align-items: center;
   padding: 20px;
   border-radius: 10px;
-  background: white;
+  background: #71c9ce;
   margin: 16px 0;
   transition: all ease 0.2s;
 }
@@ -45,8 +45,8 @@ export default {
   border-radius: 10px;
 }
 img {
-  max-width: 150%;
-  max-height: 150%;
+  max-width: 100%;
+  max-height: 100%;
   display: block;
 }
 .info {
